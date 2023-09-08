@@ -1,6 +1,6 @@
 # MA_home_assignment
 
-##How to run the home assignment application
+## How to run the home assignment application
 
 -   Load or build the docker image into the machine
     -   docker load -i pi-log-manager OR docker build . --tag=pi-log-manager
