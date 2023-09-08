@@ -1,5 +1,8 @@
 package controllers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +11,7 @@ import java.util.Scanner;
 
 public class FileFormatter extends FileHandler {
     private static final String DEFAULT_PATTERN = "(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(\\d{4}) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) .+";
+    protected static final Logger logger = LogManager.getLogger(FileFormatter.class);
 
     public FileFormatter(File inputFile) {
         super(inputFile);

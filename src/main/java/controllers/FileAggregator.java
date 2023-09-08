@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class FileAggregator extends FileHandler{
+    protected static final Logger logger = LogManager.getLogger(FileAggregator.class);
 
     public FileAggregator(File inputFile) {
         super(inputFile);
