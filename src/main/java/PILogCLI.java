@@ -10,6 +10,8 @@ public class PILogCLI {
             switch (args[0]) {
                 case "filter" -> {
                     FileFormatter fileFormatter = new FileFormatter(new File(args[1]));
+                    if (args.length > 2)
+                        fileFormatter.outputFile(new File(args[2]));
                     fileFormatter.removeFileNoise();
                 }
                 case "group" -> {
