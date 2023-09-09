@@ -2,9 +2,11 @@
 
 ## How to run the home assignment application
 
--   Load or build the docker image into the machine
-    -   docker load -i pi-log-manager OR docker build . --tag=pi-log-manager
--   docker run -v <local/path/to/files/folder>:</any/path/on/container> <image-name>:<image-tag> <function group|filter> <path/to/file>
+-   pull or build the docker image into the machine
+    -   docker push sergeikov/ma-home:1.0.0
+    -   OR docker build . --tag=pi-log-manager if building from Dockerfile and compiled jar
+
+-   docker run -v <local/path/to/files/folder>:</any/path/on/container> <image-name>:<image-tag> group <path/to/file>
     -   -v is required when running on a local machine to mount folder with files to the docker container
-        -   Example: docker run -v e:\Projects\MedAware_home_assignment\fileMount:/app/files/ pi-log-manager:latest group /app/files/task_input
-    -   Note: all the mount and file access should be part of a docker compose and wrapped in API.
+    -   Example: docker run -v e:\Projects\MedAware_home_assignment\fileMount:/app/files/ pi-log-manager:latest group /app/files/task_input
+    -   can also run the filter function by runnning the same cli command with replacing "group" argument with filter
