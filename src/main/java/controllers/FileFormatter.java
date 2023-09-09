@@ -17,12 +17,18 @@ public class FileFormatter extends FileHandler {
         super(inputFile);
     }
 
+    public FileFormatter outputFile(File outputFile) throws IOException {
+        this.outputFile = outputFile;
+        this.outputWriter = new BufferedWriter(new FileWriter(outputFile.getAbsolutePath()));
+        return this;
+    }
+
     public void removeFileNoise() throws IOException {
         removeFileNoise(FileFormatter.DEFAULT_PATTERN);
     }
 
     public void removeFileNoise(String pattern) throws IOException {
-        this.outputWriter = new BufferedWriter(new FileWriter(inputFile.getAbsolutePath() + "_temp"));
+        if(this.outputWriter==null) this.outputWriter = new BufferedWriter(new FileWriter(inputFile.getAbsolutePath() + "_temp"));
         logger.info("Starting remove file noise with pattern: " + pattern);
         try {
             Scanner scanner = new Scanner(inputFile);
@@ -35,11 +41,12 @@ public class FileFormatter extends FileHandler {
             }
             outputWriter.close();
             scanner.close();
-
-            logger.debug("replacing input file with temporary file");
-            outputFile = new File(inputFile.getAbsolutePath() + "_temp");
-            inputFile.delete();
-            outputFile.renameTo(inputFile);
+            if(this.outputFile==null) {
+                logger.debug("replacing input file with temporary file");
+                outputFile = new File(inputFile.getAbsolutePath() + "_temp");
+                inputFile.delete();
+                outputFile.renameTo(inputFile);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

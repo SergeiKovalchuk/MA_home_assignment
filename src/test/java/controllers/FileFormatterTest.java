@@ -26,7 +26,7 @@ class FileFormatterTest {
     @Test
     void RemoveFileNoise() throws Exception{
         File inputFile = new File("src/test/resources/file_with_noise");
-        FileFormatter fileFormatter = new FileFormatter(inputFile);
+        FileFormatter fileFormatter = new FileFormatter(inputFile).outputFile(tempFile);
         File expectedOutput = new File("src/test/resources/file_without_noise");
 
         fileFormatter.removeFileNoise();
